@@ -19,9 +19,14 @@ public class Meteorite : MonoBehaviour
         {
             collision.GetComponent<PlayerHP>().TakeDamage(damage);
 
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-
-            Destroy(gameObject);
+            OnDie();
         }
+    }
+
+    public void OnDie()
+    {
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+        Destroy(gameObject);
     }
 }

@@ -11,7 +11,11 @@ public class PlayerHP : MonoBehaviour
 	private PlayerController playerController;
 
 	public float MaxHP => maxHP;
-	public float CurrentHP => currentHP;
+	public float CurrentHP
+	{
+		set => currentHP = Mathf.Clamp(value, 0, maxHP);
+		get => currentHP;
+	}
 
 	private void Awake()
 	{
@@ -20,9 +24,9 @@ public class PlayerHP : MonoBehaviour
 		playerController = GetComponent<PlayerController>();
 	}
 
-	public void TakeDamage(float _damage)
+	public void TakeDamage(float damage)
 	{
-		currentHP -= _damage;
+		currentHP -= damage;
 
 		StopCoroutine("HitColorAnimation");
 		StartCoroutine("HitColorAnimation");
